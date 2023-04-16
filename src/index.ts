@@ -25,7 +25,7 @@ const server = http.createServer(app);
 server.listen(5000, () => {
   console.log('Server is running on http://localhost:5000');
 });
-const MONGO_DB_URL = process.env.DB_URL;
+
 mongoose.Promise = Promise;
-mongoose.connect(MONGO_DB_URL);
+mongoose.connect(process.env.DB_URL);
 mongoose.connection.on('error', (error: Error) => console.log(error));
