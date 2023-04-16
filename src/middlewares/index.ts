@@ -13,7 +13,6 @@ export const isOwner = async (
     const { id } = req.params;
 
     const currentUserId = get(req, 'identity._id') as string;
-    console.log(currentUserId);
     if (!currentUserId) {
       return res.sendStatus(403);
     }
