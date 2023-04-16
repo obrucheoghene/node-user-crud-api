@@ -7,13 +7,15 @@ export const register = async (req: express.Request, res: express.Response) => {
     const { email, password, username } = req.body;
 
     if (!email || !password || !username) {
-      return res.sendStatus(400);
+      return res
+        .status(400)
+        .json({ message: 'Email, password and username is required' });
     }
 
     const existingUser = await getUserByEmail(email);
 
     if (existingUser) {
-      return res.sendStatus(400);
+      return res.status(400).json({ message: 'A user exist with this email' });
     }
 
     const salt = random();
@@ -30,6 +32,6 @@ export const register = async (req: express.Request, res: express.Response) => {
     return res.status(200).json(user).end();
   } catch (error) {
     console.log(error);
-    return res.sendStatus(400);
+    return res.status(400).json({ message: 'An error occured' });
   }
 };
