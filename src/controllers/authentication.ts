@@ -23,7 +23,7 @@ export const login = async (req: express.Request, res: express.Response) => {
     const expectedHash = authentication(user.authentication.salt, password);
 
     if (user.authentication.password !== expectedHash) {
-      return res.status(403).json({ message: 'Wrong username or password' });
+      return res.status(403).json({ message: 'Wrong email or password' });
     }
 
     const salt = random();
@@ -35,7 +35,7 @@ export const login = async (req: express.Request, res: express.Response) => {
 
     await user.save();
 
-    res.cookie('NODE_AUTH', user.authentication.sessionToken, {
+    res.cookie('AUTH_USER', user.authentication.sessionToken, {
       domain: 'localhost',
       path: '/',
     });
@@ -46,12 +46,12 @@ export const login = async (req: express.Request, res: express.Response) => {
 
 export const register = async (req: express.Request, res: express.Response) => {
   try {
-    const { email, password, username } = req.body;
+    const { email, password, name } = req.body;
 
-    if (!email || !password || !username) {
+    if (!email || !password || !name) {
       return res
         .status(400)
-        .json({ message: 'Email, password and username are required' });
+        .json({ message: 'Email, password and name are required' });
     }
 
     const existingUser = await getUserByEmail(email);
@@ -64,7 +64,7 @@ export const register = async (req: express.Request, res: express.Response) => {
 
     const user = await createUser({
       email,
-      username,
+      name,
       authentication: {
         salt,
         password: authentication(salt, password),

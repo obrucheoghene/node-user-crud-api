@@ -36,15 +36,15 @@ export const updateUser = async (
 ) => {
   try {
     const { id } = req.params;
-    const { username } = req.body;
+    const { name } = req.body;
 
-    if (!username) {
+    if (!name) {
       return res.sendStatus(400);
     }
 
     const user = await getUserById(id);
 
-    user.username = username;
+    user.name = name;
     await user.save();
 
     return res.status(200).json(user);

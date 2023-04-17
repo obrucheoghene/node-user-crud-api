@@ -22,13 +22,13 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 const server = http.createServer(app);
-
-server.listen(5000, () => {
-  console.log('Server is running on http://localhost:5000');
+const PORT = process.env.PORT;
+server.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 mongoose.Promise = Promise;
-mongoose.connect(process.env.DB_URL);
+mongoose.connect(process.env.MONGO_DB_URL);
 mongoose.connection.on('error', (error: Error) => console.log(error));
 
 app.use('/', router());
