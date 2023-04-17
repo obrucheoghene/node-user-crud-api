@@ -2,6 +2,8 @@
 
 This is a Node.js API implemented with Typescript to allow users to perform CRUD (Create, Read, Update, and Delete) operations on a user resource.
 
+![API Preview](api-preview.png)
+
 ### Requirements
 
 - Nodejs
