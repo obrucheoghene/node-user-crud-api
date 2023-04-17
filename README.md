@@ -70,7 +70,7 @@ Response Data
 ]
 ```
 
-#### - PUT /users/:id
+#### PATCH /users/:id
 
 Updates a user with the specified ID. It Requires a JSON body with the name field.
 
