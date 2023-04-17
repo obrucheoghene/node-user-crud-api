@@ -27,7 +27,7 @@ PORT=5000
 
 The following endpoints are available:
 
-#### - POST /users
+#### POST /users
 
 Creates a new user. Requires a JSON body with the following fields:
 
@@ -45,7 +45,7 @@ Request body
 }
 ```
 
-#### - GET /users
+#### GET /users
 
 Returns a list of all users.
 
@@ -81,7 +81,7 @@ Updates a user with the specified ID. It Requires a JSON body with the name fiel
 }
 ```
 
-#### - DELETE /users/:id
+#### DELETE /users/:id
 
 Deletes a user with the specified ID.
 
